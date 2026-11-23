@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mslab-nginx-deployment
+  namespace: mslab
+  labels:
+    app: mslab-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mslab-nginx
+  template:
+    metadata:
+      labels:
+        app: mslab-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: registry.lab.elarisystems.com/default/nginx
+          ports:
+            - containerPort: 80
+

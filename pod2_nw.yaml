@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testpod2
+  namespace: mslab
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app: testpod1
+          topologyKey: kubernetes.io/hostname
+  containers:
+    - name: c03
+      image: registry.lab.elarisystems.com/default/httpd
+      ports:
+        - containerPort: 80
+
